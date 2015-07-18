@@ -1,0 +1,26 @@
+CREATE (a:User { name: "John"})
+CREATE (b:User { name: "Nabucodonosor"})
+CREATE (c:User { name: "Paul"})
+CREATE (d:User { name: "George"})
+CREATE (e:User { name: "Blaise"})
+
+CREATE (o:Role { name: "User"})
+CREATE (p:Role { name: "Moderator"})
+CREATE (q:Role { name: "Admin"})
+CREATE (r:Role { name: "Superadmin"})
+
+CREATE (a)-[:memberOf]->(o)
+CREATE (b)-[:memberOf]->(p)
+CREATE (c)-[:memberOf]->(q)
+CREATE (d)-[:memberOf]->(p)
+CREATE (d)-[:memberOf]->(q)
+CREATE (e)-[:memberOf]->(r)
+
+CREATE (p)-[:childOf]->(o)
+CREATE (q)-[:childOf]->(o)
+CREATE (r)-[:childOf]->(p)
+CREATE (r)-[:childOf]->(q)
+
+CREATE (o)-[:hasPermission]->(:Permission { name: "LandingPageViewing"})
+CREATE (p)-[:hasPermission]->(:Permission { name: "ModeratorPageViewing"})
+CREATE (q)-[:hasPermission]->(:Permission { name: "AdminPageViewing"})

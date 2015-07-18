@@ -1,0 +1,10 @@
+{
+  "main": "io.vertx.ext.graph.neo4j.Neo4jGraphVerticle",
+  "options": {
+    "config": {
+      "mode": "gui",
+      "path": "/tmp/graphdb",
+      "baseAddress": "graph"
+    }
+  }
+}
