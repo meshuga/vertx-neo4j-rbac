@@ -1,6 +1,6 @@
-package com.github.meshuga.vertx.neo4j.acl.auth;
+package com.github.meshuga.vertx.neo4j.rbac.auth;
 
-import com.github.meshuga.vertx.neo4j.acl.auth.impl.AuthServiceImpl;
+import com.github.meshuga.vertx.neo4j.rbac.auth.impl.AuthServiceImpl;
 import io.vertx.codegen.annotations.ProxyGen;
 import io.vertx.codegen.annotations.VertxGen;
 import io.vertx.core.AsyncResult;
@@ -11,7 +11,7 @@ import io.vertx.serviceproxy.ProxyHelper;
 @ProxyGen
 @VertxGen
 public interface AuthService {
-    String SERVICE_ADDRESS = "vertx-neo4j-acl-service";
+    String SERVICE_ADDRESS = "vertx-neo4j-rbac-service";
 
     static AuthService create(Vertx vertx) {
         return new AuthServiceImpl(vertx);

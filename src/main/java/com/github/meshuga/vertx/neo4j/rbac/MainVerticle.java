@@ -1,14 +1,13 @@
-package com.github.meshuga.vertx.neo4j.acl;
+package com.github.meshuga.vertx.neo4j.rbac;
 
-import com.github.meshuga.vertx.neo4j.acl.auth.AuthServiceVerticle;
-import com.github.meshuga.vertx.neo4j.acl.auth.rxjava.AuthService;
+import com.github.meshuga.vertx.neo4j.rbac.auth.AuthServiceVerticle;
+import com.github.meshuga.vertx.neo4j.rbac.auth.rxjava.AuthService;
 import io.vertx.core.Future;
 import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import io.vertx.rxjava.core.AbstractVerticle;
 import io.vertx.rxjava.core.Vertx;
-import io.vertx.rxjava.core.http.HttpServer;
 import io.vertx.rxjava.ext.web.Router;
 import io.vertx.rxjava.ext.web.RoutingContext;
 import rx.functions.Action1;
@@ -33,7 +32,7 @@ public class MainVerticle extends AbstractVerticle {
 
     @Override
     public void start(Future<Void> startFuture) throws Exception {
-        AuthService authService = AuthService.createProxy(vertx, com.github.meshuga.vertx.neo4j.acl.auth.AuthService.SERVICE_ADDRESS);
+        AuthService authService = AuthService.createProxy(vertx, com.github.meshuga.vertx.neo4j.rbac.auth.AuthService.SERVICE_ADDRESS);
 
         Router router = Router.router(vertx);
         router.get("/init").handler(routingContext -> {
@@ -54,7 +53,7 @@ public class MainVerticle extends AbstractVerticle {
         router.get("/landingPage").handler(routingContext -> {
             String userName = routingContext.request().getParam("userName");
             authService.hasPermissionObservable(userName, "LandingPageViewing").subscribe(res -> {
-                if (res == true) {
+                if (res) {
                     routingContext.response().end("Authorized");
                 } else {
                     routingContext.response().setStatusCode(401).end("Not Authorized");
@@ -65,7 +64,7 @@ public class MainVerticle extends AbstractVerticle {
         router.get("/moderatorPage").handler(routingContext -> {
             String userName = routingContext.request().getParam("userName");
             authService.hasPermissionObservable(userName, "ModeratorPageViewing").subscribe(res -> {
-                if (res == true) {
+                if (res) {
                     routingContext.response().end("Authorized");
                 } else {
                     routingContext.response().setStatusCode(401).end("Not Authorized");
@@ -76,7 +75,7 @@ public class MainVerticle extends AbstractVerticle {
         router.get("/adminPage").handler(routingContext -> {
             String userName = routingContext.request().getParam("userName");
             authService.hasPermissionObservable(userName, "AdminPageViewing").subscribe(res -> {
-                if (res == true) {
+                if (res) {
                     routingContext.response().end("Authorized");
                 } else {
                     routingContext.response().setStatusCode(401).end("Not Authorized");

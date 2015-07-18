@@ -1,6 +1,6 @@
-package com.github.meshuga.vertx.neo4j.acl.auth;
+package com.github.meshuga.vertx.neo4j.rbac.auth;
 
-import com.github.meshuga.vertx.neo4j.acl.auth.impl.AuthServiceImpl;
+import com.github.meshuga.vertx.neo4j.rbac.auth.impl.AuthServiceImpl;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.serviceproxy.ProxyHelper;
 

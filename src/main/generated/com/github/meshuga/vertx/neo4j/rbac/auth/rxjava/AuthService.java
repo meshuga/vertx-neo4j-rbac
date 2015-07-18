@@ -14,7 +14,7 @@
  * under the License.
  */
 
-package com.github.meshuga.vertx.neo4j.acl.auth.rxjava;
+package com.github.meshuga.vertx.neo4j.rbac.auth.rxjava;
 
 import java.util.Map;
 import io.vertx.lang.rxjava.InternalHelper;
@@ -26,9 +26,9 @@ import io.vertx.core.Handler;
 
 public class AuthService {
 
-  final com.github.meshuga.vertx.neo4j.acl.auth.AuthService delegate;
+  final com.github.meshuga.vertx.neo4j.rbac.auth.AuthService delegate;
 
-  public AuthService(com.github.meshuga.vertx.neo4j.acl.auth.AuthService delegate) {
+  public AuthService(com.github.meshuga.vertx.neo4j.rbac.auth.AuthService delegate) {
     this.delegate = delegate;
   }
 
@@ -37,12 +37,12 @@ public class AuthService {
   }
 
   public static AuthService create(Vertx vertx) { 
-    AuthService ret= AuthService.newInstance(com.github.meshuga.vertx.neo4j.acl.auth.AuthService.create((io.vertx.core.Vertx) vertx.getDelegate()));
+    AuthService ret= AuthService.newInstance(com.github.meshuga.vertx.neo4j.rbac.auth.AuthService.create((io.vertx.core.Vertx) vertx.getDelegate()));
     return ret;
   }
 
   public static AuthService createProxy(Vertx vertx, String address) { 
-    AuthService ret= AuthService.newInstance(com.github.meshuga.vertx.neo4j.acl.auth.AuthService.createProxy((io.vertx.core.Vertx) vertx.getDelegate(), address));
+    AuthService ret= AuthService.newInstance(com.github.meshuga.vertx.neo4j.rbac.auth.AuthService.createProxy((io.vertx.core.Vertx) vertx.getDelegate(), address));
     return ret;
   }
 
@@ -57,7 +57,7 @@ public class AuthService {
   }
 
 
-  public static AuthService newInstance(com.github.meshuga.vertx.neo4j.acl.auth.AuthService arg) {
+  public static AuthService newInstance(com.github.meshuga.vertx.neo4j.rbac.auth.AuthService arg) {
     return arg != null ? new AuthService(arg) : null;
   }
 }

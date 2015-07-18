@@ -1,7 +1,7 @@
-package com.github.meshuga.vertx.neo4j.acl.auth.impl;
+package com.github.meshuga.vertx.neo4j.rbac.auth.impl;
 
-import com.github.meshuga.vertx.neo4j.acl.MainVerticle;
-import com.github.meshuga.vertx.neo4j.acl.auth.AuthService;
+import com.github.meshuga.vertx.neo4j.rbac.MainVerticle;
+import com.github.meshuga.vertx.neo4j.rbac.auth.AuthService;
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Future;
 import io.vertx.core.Handler;
@@ -26,8 +26,6 @@ public class AuthServiceImpl implements AuthService {
             JsonObject body = (JsonObject)res.body();
             Integer hasPermission = body.getJsonArray("data").getJsonArray(0).getInteger(0);
             resultHandler.handle(Future.succeededFuture(hasPermission != 0));
-        }, err -> {
-            resultHandler.handle(Future.failedFuture(err));
-        });
+        }, err -> resultHandler.handle(Future.failedFuture(err)));
     }
 }

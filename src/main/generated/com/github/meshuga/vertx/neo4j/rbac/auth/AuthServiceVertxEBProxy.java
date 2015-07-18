@@ -14,9 +14,9 @@
 * under the License.
 */
 
-package com.github.meshuga.vertx.neo4j.acl.auth;
+package com.github.meshuga.vertx.neo4j.rbac.auth;
 
-import com.github.meshuga.vertx.neo4j.acl.auth.AuthService;
+import com.github.meshuga.vertx.neo4j.rbac.auth.AuthService;
 import io.vertx.core.eventbus.DeliveryOptions;
 import io.vertx.core.Vertx;
 import io.vertx.core.Future;
@@ -29,8 +29,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import io.vertx.serviceproxy.ProxyHelper;
+import com.github.meshuga.vertx.neo4j.rbac.auth.AuthService;
 import io.vertx.core.Vertx;
-import com.github.meshuga.vertx.neo4j.acl.auth.AuthService;
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Handler;
 
